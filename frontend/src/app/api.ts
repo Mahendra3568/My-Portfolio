@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ApiService { // <-- We are naming our class 'ApiService'
 
   // This is the URL of our running Node.js backend
-  private baseUrl = 'http://localhost:3000/api'; 
+  private baseUrl = 'https://my-portfolio-6xq6.onrender.com/api'; 
 
   constructor(private http: HttpClient) { }
 
