@@ -1,0 +1,200 @@
+/* --- Global Styles --- */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- Shared Section Styling --- */
+.portfolio-section {
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+}
+
+.portfolio-section h3 {
+  font-size: 1.8rem;
+  color: #333;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* --- 1. Header & Profile --- */
+.header-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #007bff;
+}
+
+.header-text h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.header-text h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #555;
+  margin: 5px 0 15px 0;
+}
+
+.header-text .summary {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.contact-links {
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.contact-links a,
+.contact-links span {
+  margin-right: 10px;
+}
+
+/* --- 2. About Me --- */
+.about-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* --- 3. Skills --- */
+.skills-container {
+  display: flex;
+  gap: 30px;
+}
+
+.skill-list h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.skill-list ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.skill-list li {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+/* --- 4. Experience & Education (Timeline) --- */
+.timeline-item {
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 20px;
+  border-left: 2px solid #007bff;
+}
+
+.timeline-item::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: #007bff;
+  border-radius: 50%;
+  position: absolute;
+  left: -7px;
+  top: 5px;
+}
+
+.timeline-item h4 {
+  font-size: 1.3rem;
+  margin: 0 0 5px 0;
+}
+
+.item-meta {
+  display: block;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.timeline-item p {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+/* --- 5. Projects --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.project-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background: #fafafa;
+  transition: box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-card h4 {
+  font-size: 1.3rem;
+  margin: 0 0 10px 0;
+  color: #007bff;
+}
+
+.project-tech {
+  font-size: 0.9rem;
+  color: #333;
+  margin: 15px 0;
+}
+
+.project-links a {
+  font-weight: 500;
+  margin-right: 15px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .header-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .skills-container {
+    flex-direction: column;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}

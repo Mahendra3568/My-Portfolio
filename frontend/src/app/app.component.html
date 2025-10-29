@@ -1,0 +1,80 @@
+<div class="container" *ngIf="profile">
+
+  <header class="header-section">
+    <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+    <div class="header-text">
+      <h1>{{ profile.name }}</h1>
+      <h2>{{ profile.headline }}</h2>
+      <p class="summary">{{ profile.summary }}</p>
+      <div class="contact-links">
+        <a [href]="'mailto:' + profile.email">Email</a> | 
+        <a [href]="profile.linkedin_url" target="_blank">LinkedIn</a> | 
+        <a [href]="profile.github_url" target="_blank">GitHub</a> |
+        <span>{{ profile.phone }}</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="portfolio-section">
+    <h3>About Me</h3>
+    <p class="about-text" [innerHTML]="profile.about_me.replace('\\n', '<br>')"></p>
+  </section>
+
+  <section class="portfolio-section">
+    <h3>Skills</h3>
+    <div class="skills-container">
+      <div class="skill-list">
+        <h4>Technical Skills</h4>
+        <ul>
+          <li *ngFor="let skill of getSkillsByType('technical')">{{ skill.name }}</li>
+        </ul>
+      </div>
+      <div class="skill-list">
+        <h4>Soft Skills</h4>
+        <ul>
+          <li *ngFor="let skill of getSkillsByType('soft')">{{ skill.name }}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio-section">
+    <h3>Experience</h3>
+    <div class="timeline">
+      <div class="timeline-item" *ngFor="let exp of experiences">
+        <h4>{{ exp.title }} - {{ exp.company }}</h4>
+        <span class="item-meta">{{ exp.dates }}</span>
+        <p>{{ exp.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio-section">
+    <h3>Projects</h3>
+    <div class="projects-grid">
+      <div class="project-card" *ngFor="let proj of projects">
+        <h4>{{ proj.title }}</h4>
+        <p>{{ proj.description }}</p>
+        <div class="project-tech">
+          <strong>Technologies:</strong> {{ proj.technologies.join(', ') }}
+        </div>
+        <div class="project-links">
+          <a [href]="proj.github_link" target="_blank">GitHub Repo</a>
+          <a *ngIf="proj.demo_link !== 'N/A'" [href]="proj.demo_link" target="_blank">Live Demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio-section">
+    <h3>Education</h3>
+    <div class="timeline">
+      <div class="timeline-item" *ngFor="let edu of educations">
+        <h4>{{ edu.degree }}</h4>
+        <span class="item-meta">{{ edu.institution }} | {{ edu.dates }}</span>
+        <p>{{ edu.notes }}</p>
+      </div>
+    </div>
+  </section>
+
+</div>
