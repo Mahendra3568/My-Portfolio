@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment'; // <-- IMPORT THIS
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService { // <-- We are naming our class 'ApiService'
-
-  // This is the URL of our running Node.js backend
-  private baseUrl = 'https://my-portfolio-6xq6.onrender.com/api'; 
+export class ApiService {
+  
+  // This now uses the correct URL for local or production
+  private baseUrl = environment.apiUrl; 
 
   constructor(private http: HttpClient) { }
 

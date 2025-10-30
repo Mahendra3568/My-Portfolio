@@ -9,7 +9,25 @@ const PORT = process.env.PORT || 3000;
 const MONGO_URI = "mongodb+srv://portfolio_user:Portfolio12345@portfoliocluster.prhmoil.mongodb.net/portfolioDB?appName=PortfolioCluster";
 
 // --- Middleware ---
-app.use(cors()); // Allow cross-origin requests
+//app.use(cors()); // Allow cross-origin requests
+// --- Middleware ---
+const allowedOrigins = [
+  'http://localhost:4200',                  // Your local frontend
+  'https://kvmportfolio.netlify.app'        // Your new Netlify frontend
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
+// --- (The app.use(express.json()) line should be next) ---
 app.use(express.json()); // Allow app to accept JSON
 
 // --- MongoDB Connection ---
