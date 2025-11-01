@@ -13,7 +13,8 @@ const MONGO_URI = "mongodb+srv://portfolio_user:Portfolio12345@portfoliocluster.
 // --- Middleware ---
 const allowedOrigins = [
   'http://localhost:4200',                  // Your local frontend
-  'https://kvmportfolio.netlify.app'        // Your new Netlify frontend
+  'https://kvmportfolio.netlify.app',
+  'https://idyllic-sunflower-8bc781.netlify.app'        // Your new Netlify frontend
 ];
 
 app.use(cors({
