@@ -9,12 +9,11 @@ const PORT = process.env.PORT || 3000;
 const MONGO_URI = "mongodb+srv://portfolio_user:Portfolio12345@portfoliocluster.prhmoil.mongodb.net/portfolioDB?appName=PortfolioCluster";
 
 // --- Middleware ---
-//app.use(cors()); // Allow cross-origin requests
-// --- Middleware ---
+// Cleaned 'allowedOrigins' array without hidden characters
 const allowedOrigins = [
-  'http://localhost:4200',                  // Your local frontend
+  'http://localhost:4200',
   'https://kvmportfolio.netlify.app',
-  'https://idyllic-sunflower-8bc781.netlify.app'        // Your new Netlify frontend
+  'https://idyllic-sunflower-8bc781.netlify.app'
 ];
 
 app.use(cors({
@@ -28,7 +27,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-// --- (The app.use(express.json()) line should be next) ---
+
 app.use(express.json()); // Allow app to accept JSON
 
 // --- MongoDB Connection ---
@@ -37,11 +36,8 @@ mongoose.connect(MONGO_URI)
   .catch(err => console.error("MongoDB connection error: ", err));
 
 // -----------------------------------------------------------------
-// 1. DEFINE OUR DATA "SCHEMAS" (The structure of our data)
+// 1. DEFINE OUR DATA "SCHEMAS"
 // -----------------------------------------------------------------
-
-// Note: We tell Mongoose to use the *existing* collection names
-// (e.g., { collection: 'profile' })
 
 const profileSchema = new mongoose.Schema({
   name: String,
@@ -52,26 +48,26 @@ const profileSchema = new mongoose.Schema({
   phone: String,
   linkedin_url: String,
   github_url: String
-}, { collection: 'profile' }); // Use the 'profile' collection
+}, { collection: 'profile' });
 
 const skillSchema = new mongoose.Schema({
   name: String,
   type: String
-}, { collection: 'skills' }); // Use the 'skills' collection
+}, { collection: 'skills' });
 
 const experienceSchema = new mongoose.Schema({
   title: String,
   company: String,
   dates: String,
   description: String
-}, { collection: 'experiences' }); // Use the 'experiences' collection
+}, { collection: 'experiences' });
 
 const educationSchema = new mongoose.Schema({
   degree: String,
   institution: String,
   dates: String,
   notes: String
-}, { collection: 'educations' }); // Use the 'educations' collection
+}, { collection: 'educations' });
 
 const projectSchema = new mongoose.Schema({
   title: String,
@@ -79,10 +75,10 @@ const projectSchema = new mongoose.Schema({
   technologies: [String],
   github_link: String,
   demo_link: String
-}, { collection: 'projects' }); // Use the 'projects' collection
+}, { collection: 'projects' });
 
 // -----------------------------------------------------------------
-// 2. CREATE "MODELS" (The tools to interact with our collections)
+// 2. CREATE "MODELS"
 // -----------------------------------------------------------------
 
 const Profile = mongoose.model('Profile', profileSchema);
@@ -92,11 +88,10 @@ const Education = mongoose.model('Education', educationSchema);
 const Project = mongoose.model('Project', projectSchema);
 
 // -----------------------------------------------------------------
-// 3. CREATE OUR 5 API ENDPOINTS (The "routes" our frontend will call)
+// 3. CREATE OUR 5 API ENDPOINTS
 // -----------------------------------------------------------------
 
 // --- GET Profile ---
-// We use .findOne() because there is only ONE profile
 app.get('/api/profile', async (req, res) => {
   try {
     const data = await Profile.findOne();
@@ -107,7 +102,6 @@ app.get('/api/profile', async (req, res) => {
 });
 
 // --- GET Skills ---
-// We use .find() because there are MANY skills
 app.get('/api/skills', async (req, res) => {
   try {
     const data = await Skill.find();
